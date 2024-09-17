@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 alphabet = ('a'..'z').to_a
 length = alphabet.length
 
-caesar_cipher =-> (s, shift) {
-    deciphered = "" 
+def caesar_cipher(str, shift)
+    deciphered = ''
 
-    s.chars.map do |c|
-        if alphabet.include? c.downcase
+    str.chars.map do |c|
+        if alphabet.include? str.downcase
             index = (alphabet.find_index(c.downcase) + shift) % length
-            if c.downcase == c
+            if c.downcase == str
                 deciphered += alphabet[index]
             else
                 deciphered += alphabet[index].upcase
             end
         else
-            deciphered += c
+            deciphered += str
         end
     end
-    
-    deciphered
-}
 
-puts caesar_cipher.call("Hello, World! 123", 3)
+    deciphered
+end
+
+puts caesar_cipher('Hello, World! 123', 3)
